@@ -34,12 +34,13 @@ void main(uint8_t *arg) {
         buffer[10] == ' ' &&
         buffer[13] == '$' &&
         buffer[14] == '\0') {
-      uint16_t mask = ((buffer[11] >= 'a' ? 10 + buffer[11] - 'a' :
-                        buffer[11] >= 'A' ? 10 + buffer[11] - 'A' :
-                        buffer[11]  - '0') << 12) |
-                      ((buffer[12] >= 'a' ? 10 + buffer[12] - 'a' :
-                        buffer[12] >= 'A' ? 10 + buffer[12] - 'A' :
-                        buffer[12]  - '0') <<  8);
+      uint16_t mask =
+        ((buffer[11] >= 'a' ? 10 + buffer[11] - 'a' :
+          buffer[11] >= 'A' ? 10 + buffer[11] - 'A' :
+          buffer[11]  - '0') << 12) |
+        ((buffer[12] >= 'a' ? 10 + buffer[12] - 'a' :
+          buffer[12] >= 'A' ? 10 + buffer[12] - 'A' :
+          buffer[12]  - '0') <<  8);
       asm volatile (
         "pushw %mask\n"
         "int $0x8a\n"
