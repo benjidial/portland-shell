@@ -2,12 +2,13 @@
 #include <p-clib/stdlib.h>
 #include <stdint.h>
 
-/*Copyright 2018 Benji Dial
-  Portland shell*/
+/*Portland Shell
+  Copyright 2018 Benji Dial
+  Under MIT License*/
 
-void main(uint8_t *arg) {
+void main(void) {
   uint8_t buffer[1024];
-  puts("Welcome to Portland Shell v0.2.0!");
+  puts("Welcome to Portland Shell v0.2-dev!");
   while (1) {
     putchar('>');
     putchar(' ');
@@ -18,7 +19,7 @@ void main(uint8_t *arg) {
              buffer [4] == 't' &&
              buffer [5] == '$' &&
              buffer [6] == '\0') {
-      puts("Goodbye from Portland Shell v0.2.0!");
+      puts("Goodbye from Portland Shell v0.2-dev!");
       return;
     }
     if (buffer[ 0] == '$' &&
