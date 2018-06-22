@@ -48,7 +48,7 @@ void main(void) {
       asm volatile (
         "pushw %mask\n"
         "int $0x8a;set mask\n"
-        "add $2, %sp"
+        "addw $2, %sp"
       );
     } else
       system(buffer);
