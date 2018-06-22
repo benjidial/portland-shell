@@ -7,6 +7,9 @@
   Under MIT License*/
 
 void main(void) {
+  asm volatile (
+    "int $0x8c;clear screen"
+  );
   uint8_t buffer[1024];
   puts("Welcome to Portland Shell v0.2-dev!");
   while (1) {
@@ -44,7 +47,7 @@ void main(void) {
           buffer[12]  - '0') <<  8);
       asm volatile (
         "pushw %mask\n"
-        "int $0x8a\n"
+        "int $0x8a;set mask\n"
         "add $2, %sp"
       );
     } else
