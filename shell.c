@@ -8,7 +8,7 @@
 
 void main(void) {
   asm volatile (
-    "int $0x8c;clear screen"
+    "int $0x4c;clear screen"
   );
   uint8_t buffer[1024];
   puts("Welcome to Portland Shell v0.2-dev!");
@@ -38,17 +38,16 @@ void main(void) {
         buffer[10] == ' ' &&
         buffer[13] == '$' &&
         buffer[14] == '\0') {
-      uint16_t mask =
+      uint8_t color =
         ((buffer[11] >= 'a' ? 10 + buffer[11] - 'a' :
           buffer[11] >= 'A' ? 10 + buffer[11] - 'A' :
-          buffer[11]  - '0') << 12) |
-        ((buffer[12] >= 'a' ? 10 + buffer[12] - 'a' :
+          buffer[11]  - '0') << 4) |
+         (buffer[12] >= 'a' ? 10 + buffer[12] - 'a' :
           buffer[12] >= 'A' ? 10 + buffer[12] - 'A' :
-          buffer[12]  - '0') <<  8);
+          buffer[12]  - '0');
       asm volatile (
-        "pushw %mask\n"
-        "int $0x8a;set mask\n"
-        "addw $2, %sp"
+        "int $0x4d;set color\n"
+        : : "al" (color)
       );
     } else
       system(buffer);
