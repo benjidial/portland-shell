@@ -6,8 +6,8 @@
   Copyright 2018 Benji Dial
   Under MIT License*/
 
-void main(void) {
-  asm volatile (
+uint32_t main(void) {
+  asm (
     "int $0x4c;clear screen"
   );
   uint8_t buffer[1024];
@@ -23,7 +23,7 @@ void main(void) {
              buffer [5] == '$' &&
              buffer [6] == '\0') {
       puts("Goodbye from Portland Shell v0.2-dev!");
-      return;
+      return 0;
     }
     if (buffer[ 0] == '$' &&
         buffer[ 1] == 's' &&
@@ -45,7 +45,7 @@ void main(void) {
          (buffer[12] >= 'a' ? 10 + buffer[12] - 'a' :
           buffer[12] >= 'A' ? 10 + buffer[12] - 'A' :
           buffer[12]  - '0');
-      asm volatile (
+      asm (
         "int $0x4d;set color\n"
         : : "al" (color)
       );
