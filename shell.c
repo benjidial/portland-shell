@@ -8,7 +8,7 @@
 uint32_t main(void) {
   clear();
   uint8_t buffer[1024];
-  print_bytes("Welcome to Portland Shell v0.2.0-pre!\n");
+  print_bytes("Welcome to Portland Shell v0.2-dev!\n");
   while (1) {
     print_byte('>');
     print_byte(' ');
@@ -20,7 +20,7 @@ uint32_t main(void) {
         buffer[4] == 't' &&
         buffer[5] == '$' &&
         buffer[6] == '\0') {
-      print_bytes("Goodbye from Portland Shell v0.2.0-pre!\n");
+      print_bytes("Goodbye from Portland Shell v0.2-dev!\n");
       return 0;
     } if (buffer[ 0] == '$' &&
           buffer[ 1] == 's' &&

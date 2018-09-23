@@ -1,7 +1,7 @@
 shell:
 	mkdir part out
-	gcc -o part/shell.obj shell.c
-	objcopy -O binary part/shell.obj out/shell
+	gcc -nostdinc -m32 -o part/shell.obj -c shell.c
+	objcopy -j .text -O binary part/shell.obj out/shell
 
 clean:
 	rm -r part out
